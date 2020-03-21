@@ -1,5 +1,7 @@
-# RsrchProfilerVisualizer
-
+# Research Profiler Visualizer
+Research Profiler Visualizer is the front end representation of the data used by The University of Cincinnati's Office of Research IT. It is a proof-of-concept about the possibilities of what can be done once the data has been collected and connected to rsrch-profiler-repo.
+# User Documentation
+# Angular Documentation
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server

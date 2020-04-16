@@ -1,0 +1,90 @@
+<div class="researcher-page">
+    <div class="container">
+        <div class="name row" >
+            <h2>John Doe</h2>
+        </div>
+        <div class="row col-sm-12 info" style="margin-bottom: 25px;">
+            <p>This is some information about john doe. John Doe does this thing well. John Doe can work on this thing.</p>
+        </div>
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="main bucket col-sm-5">
+                <div style="display: block">
+                    <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                </div>
+                <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="secondary bucket col-sm-5">
+                <div class="chart">
+                    <canvas baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [plugins]="pieChartPlugins"
+                        [colors]="pieChartColors"
+                        [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+                <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
+                <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
+                <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
+                <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
+                <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="main bucket col-sm-4">
+                <div style="display: block">
+                    <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                </div>
+                <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+            </div>
+            <div class="secondary bucket col-sm-4">
+                <div class="chart">
+                    <canvas baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        [options]="pieChartOptions"
+                        [plugins]="pieChartPlugins"
+                        [colors]="pieChartColors"
+                        [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+                <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
+                <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
+                <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
+                <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
+                <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+            </div>
+            <div class="main bucket col-sm-4">
+                <div style="display: block">
+                    <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                </div>
+                <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

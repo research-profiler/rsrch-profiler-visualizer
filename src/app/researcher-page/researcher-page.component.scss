@@ -3,8 +3,19 @@
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
 }
+.dashboard{
+    padding: 50px;
+    height: 100vh;
+}
 .researcher-page{
     background-color: #303030;
     color: white;
     height: 100vh;
+}
+.portrait img{
+    width: 14.5%;
+    height: auto;
+}
+.info{
+    font-size: 15px;
 }

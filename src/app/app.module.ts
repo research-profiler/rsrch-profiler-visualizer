@@ -10,6 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ScrollToModule } from 'ng2-scroll-to-el';
 import { ResearcherPageComponent } from './researcher-page/researcher-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { Researcher } from './models/researcher.model';
+import { Measure } from './models/measure.model';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,4 +31,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+
+}

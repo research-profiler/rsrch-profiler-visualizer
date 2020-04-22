@@ -10,7 +10,7 @@ import { ResearchSharedService } from '../researcher.service';
   selector: 'app-researcher-page',
   templateUrl: './researcher-page.component.html',
   styleUrls: ['./researcher-page.component.scss'],
-  providers: [ResearchSharedService]
+  providers: []
 })
 export class ResearcherPageComponent implements OnInit {
   
@@ -30,20 +30,26 @@ export class ResearcherPageComponent implements OnInit {
   barChartLabels4: Label[];
   ngOnInit() {
     this.researchService.sharedResearcher.subscribe(researcher => this.researcher = researcher);
-    this.barChartData1 = [
-      { data: [Number(this.researcher.measures[0].globalMin)], label: 'Min',backgroundColor: '#87BCDE', hoverBackgroundColor:'#87BCDE', borderColor: '#87BCDE' },
-      { data: [Number(this.researcher.measures[0].globalMean)], label: 'Average',backgroundColor: '#D00000', hoverBackgroundColor:'#D00000', borderColor: '#D00000' },
-      { data: [Number(this.researcher.measures[0].value)], label: 'Researcher Value',backgroundColor: '#FFBA08', hoverBackgroundColor:'#FFBA08', borderColor: '#FFBA08' },
-      { data: [Number(this.researcher.measures[0].globalMax)], label: 'Max',backgroundColor: '#3F88C5', hoverBackgroundColor:'#3F88C5', borderColor: '#3F88C5' }
-    ];
-    this.barChartLabels1 = [this.researcher.measures[0].aggregateName]
-    this.barChartData2 = [
-      { data: [Number(this.researcher.measures[1].globalMin)], label: 'Min',backgroundColor: '#87BCDE', hoverBackgroundColor:'#87BCDE', borderColor: '#87BCDE'  },
-      { data: [Number(this.researcher.measures[1].globalMean)], label: 'Average',backgroundColor: '#D00000', hoverBackgroundColor:'#D00000', borderColor: '#D00000'  },
-      { data: [Number(this.researcher.measures[1].value)], label: 'Researcher Value',backgroundColor: '#FFBA08', hoverBackgroundColor:'#FFBA08', borderColor: '#FFBA08'  },
-      { data: [Number(this.researcher.measures[1].globalMax)], label: 'Max',backgroundColor: '#3F88C5', hoverBackgroundColor:'#3F88C5', borderColor: '#3F88C5'  }
-    ];
-    this.barChartLabels2 = [this.researcher.measures[1].aggregateName]
+    if(this.researcher.lastMeasures[0]){
+      this.barChartData1 = [
+        { data: [Number(this.researcher.lastMeasures[0].globalMin)], label: 'Min',backgroundColor: '#87BCDE', hoverBackgroundColor:'#87BCDE', borderColor: '#87BCDE' },
+        { data: [Number(this.researcher.lastMeasures[0].globalMean)], label: 'Average',backgroundColor: '#D00000', hoverBackgroundColor:'#D00000', borderColor: '#D00000' },
+        { data: [Number(this.researcher.lastMeasures[0].value)], label: 'Researcher Value',backgroundColor: '#FFBA08', hoverBackgroundColor:'#FFBA08', borderColor: '#FFBA08' },
+        { data: [Number(this.researcher.lastMeasures[0].globalMax)], label: 'Max',backgroundColor: '#3F88C5', hoverBackgroundColor:'#3F88C5', borderColor: '#3F88C5' }
+      ];
+    this.barChartLabels1 = [this.researcher.lastMeasures[0].aggregateName]
+    }
+    
+    if(this.researcher.lastMeasures[1]){
+      this.barChartData2 = [
+        { data: [Number(this.researcher.lastMeasures[1].globalMin)], label: 'Min',backgroundColor: '#87BCDE', hoverBackgroundColor:'#87BCDE', borderColor: '#87BCDE'  },
+        { data: [Number(this.researcher.lastMeasures[1].globalMean)], label: 'Average',backgroundColor: '#D00000', hoverBackgroundColor:'#D00000', borderColor: '#D00000'  },
+        { data: [Number(this.researcher.lastMeasures[1].value)], label: 'Researcher Value',backgroundColor: '#FFBA08', hoverBackgroundColor:'#FFBA08', borderColor: '#FFBA08'  },
+        { data: [Number(this.researcher.lastMeasures[1].globalMax)], label: 'Max',backgroundColor: '#3F88C5', hoverBackgroundColor:'#3F88C5', borderColor: '#3F88C5'  }
+      ];
+      this.barChartLabels2 = [this.researcher.lastMeasures[1].aggregateName]
+    }
+   
     this.barChartData3 = [
       { data: [75000], label: 'Well Below Average', stack: 'a',backgroundColor: '#87BCDE', hoverBackgroundColor:'#87BCDE', borderColor: '#87BCDE' },
       { data: [150000], label: 'Below Average', stack: 'a',backgroundColor: '#D00000', hoverBackgroundColor:'#D00000', borderColor: '#D00000' },
@@ -76,7 +82,7 @@ export class ResearcherPageComponent implements OnInit {
             return Number(value.toString());//pass tick values as a string into Number function
          }
     },
-    afterBuildTicks:  function (chartObj) { //Build ticks labelling as per your need
+    afterBuildTicks: function (chartObj) { //Build ticks labelling as per your need
         chartObj.ticks = [];
         chartObj.ticks.push(1);
         chartObj.ticks.push(10);

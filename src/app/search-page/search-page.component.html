@@ -2,12 +2,19 @@
     <div class="container">
         <div class="hero ">
         <h2>Research Profiler Visualizer</h2>
-        <p>Please search for a researcher by typing in their full mnumber or 6 + 2. For demonstration purposes, if you would like to see a sample researcher, please type m12345678.</p>
+        <p>Please search for a researcher by typing their first or last name. For demonstration purposes, if you would like to see a sample researcher, please type m12345678.</p>
         
         <div class="wrap">
             <div class="search">
-                <input type="text" (keyup)="getResearcher($event.target.value)" class="searchTerm" placeholder="Please type a Researcher's 6+2">
+                <form >
+                    <input type="text" (keyup)="getResearcher($event.target.value)" list="researcherlist" name="reserchersearch" class="searchTerm" placeholder="Please type a Researcher's 6+2">
+                    <datalist id="researcherlist" *ngIf="researchers">
+                        <option *ngFor="let foo of researchers.researchers">{{foo.firstName}} {{foo.lastName}}</option>
+                    </datalist>
+                    <button type="button" (click)="getData()">Get Researcher</button>
+                </form>
             </div>
+            
             <p>DISCLAIMER: All of the data on this site has either been anonymized to the best of our ability, or is test data. This is a proof of concept.</p>
         </div>
     </div>

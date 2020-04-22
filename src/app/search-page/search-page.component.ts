@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Measure } from '../models/measure.model';
 import { Researcher } from '../models/researcher.model';
-import { ResearchSharedService } from '../researcher.service';
 import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { SearchPageService } from './search-page.service';
+import { getLocaleDateFormat } from '@angular/common';
+import { ResearchSharedService } from '../researcher.service';
 
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss'],
-  providers: [ResearchSharedService]
+  providers: [SearchPageService]
 })
 export class SearchPageComponent implements OnInit {
 
-  constructor(private researchService: ResearchSharedService,private router: Router) { }
-  researcher: Researcher
-
+  constructor(private SearchPageService:SearchPageService,private researchService: ResearchSharedService, private router: Router,private http: HttpClient) { }
+  newresearcher: Researcher;
+  researcher: Researcher;
+  researchers: Researcher[];
   ngOnInit() {
     this.researchService.sharedResearcher.subscribe(researcher => this.researcher = researcher)
   }
@@ -22,14 +28,31 @@ export class SearchPageComponent implements OnInit {
   researcher1: Researcher = new Researcher('m12345678','Jon','Snoe','snoej@mail.uc.edu','Wall Tending',this.Measures);
   researcher2: Researcher = new Researcher('m43654368','Jon','Doe','doej@mail.uc.edu','Engineering',this.Measures);
   researcher3: Researcher = new Researcher('m43565658','Jon','Glow','snoej@mail.uc.edu','Engineering',this.Measures);
-  researchers: Researcher[] = [this.researcher1,this.researcher2,this.researcher3];
   getResearcher(input){
-    for(let aResearcher of this.researchers){
-      if(input == aResearcher.mnumber){
-        this.researchService.nextResearcher(aResearcher);
-        console.log(aResearcher);
-        this.router.navigate(['/','researcher'])
+    this.SearchPageService.getResearchers(input).subscribe((data)=>{
+      this.researchers = data;
+    },
+    err => {
+      if(err){
+        console.log(err.message);
       }
+    });
+    
+  };
+  getData(){
+    if(this.researchers.researchers.length > 0){
+      this.SearchPageService.getResearcher(this.researchers.researchers[0].mnumber).subscribe((data)=>{
+        this.researchService.nextResearcher(new Researcher(data.mnumber,data.firstName,data.lastName,data.email,data.department,data.lastMeasures));
+        console.log(this.researcher);
+        this.router.navigate(['/','researcher'])
+      },
+      err => {
+        if(err){
+          console.log(err.message);
+        }
+      });
+      
+      
     }
-  }
+  };
 }

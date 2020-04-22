@@ -14,12 +14,12 @@
                <h5>Department: {{researcher.department}}</h5>
             </div>
             <div class="info row" >
-                <p>For the {{this.researcher.measures[0].aggregateName}}, {{researcher.firstName}} {{researcher.lastName}} fits under the {{researcher.measures[0].thresholdName}} threshold. For the {{this.researcher.measures[1].aggregateName}}, {{researcher.firstName}} {{researcher.lastName}} fits under the {{researcher.measures[1].thresholdName}} threshold.</p>
+                <p><span *ngIf="this.researcher.lastMeasures[0]">For the {{this.researcher.lastMeasures[0].aggregateName}}, {{researcher.firstName}} {{researcher.lastName}} fits under the {{researcher.lastMeasures[0].thresholdName}} threshold.</span><span *ngIf="this.researcher.lastMeasures[1]">For the {{this.researcher.lastMeasures[1].aggregateName}}, {{researcher.firstName}} {{researcher.lastName}} fits under the {{researcher.lastMeasures[1].thresholdName}} threshold.</span></p>
             </div>
-            <div class="row">
-                <div class="main bucket col-sm-6">
+            <div class="row" *ngIf="this.researcher.lastMeasures">
+                <div class="main bucket col-sm-6" *ngIf="this.researcher.lastMeasures[0]"> 
                     <div style="display: block">
-                        <canvas baseChart *ngIf="researcher.measures"
+                        <canvas baseChart
                             [datasets]="barChartData1"
                             [labels]="barChartLabels1"
                             [options]="barChartOptions"
@@ -29,9 +29,9 @@
                         </canvas>
                     </div>
                 </div>
-                <div class="main bucket col-sm-6">
+               <div class="main bucket col-sm-6" *ngIf="this.researcher.lastMeasures[1]">
                     <div style="display: block">
-                        <canvas baseChart *ngIf="researcher.measures"
+                        <canvas baseChart
                             [datasets]="barChartData2"
                             [labels]="barChartLabels2"
                             [options]="barChartOptions"
@@ -43,9 +43,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="main bucket col-sm-6">
+                <div class="main bucket col-sm-6" *ngIf="this.researcher.lastMeasures[0]">
                     <div style="display: block">
-                        <canvas baseChart *ngIf="researcher.measures"
+                        <canvas baseChart
                             [datasets]="barChartData3"
                             [labels]="barChartLabels3"
                             [options]="barChartOptions2"
@@ -55,9 +55,9 @@
                         </canvas>
                     </div>
                 </div>
-                <div class="main bucket col-sm-6">
+                <div class="main bucket col-sm-6" *ngIf="this.researcher.lastMeasures[1]">
                     <div style="display: block">
-                        <canvas baseChart *ngIf="researcher.measures"
+                        <canvas baseChart
                             [datasets]="barChartData4"
                             [labels]="barChartLabels4"
                             [options]="barChartOptions2"
@@ -68,7 +68,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>

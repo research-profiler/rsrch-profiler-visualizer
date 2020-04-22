@@ -11,8 +11,8 @@ export class ResearchSharedService {
 
   constructor() { }
 
-  nextResearcher(researcher: Researcher) {
-    this.researcher.next(researcher)
+  nextResearcher(aresearcher:Researcher) {
+    this.researcher.next(aresearcher)
   }
   
 }

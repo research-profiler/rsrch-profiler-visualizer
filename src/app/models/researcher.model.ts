@@ -8,15 +8,15 @@ export class Researcher {
     lastName: string;
     email: string;
     department: string;
-    measures: Measure[];
+    lastMeasures: Measure[];
 
-    constructor(mnumber: string,firstName: string,lastName: string,email: string,department: string,measures:Measure[]) {
+    constructor(mnumber: string,firstName: string,lastName: string,email: string,department: string,lastMeasures:Measure[]) {
         this.mnumber = mnumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.department = department;
-        this.measures = measures;
+        this.lastMeasures = lastMeasures;
     }
     
 }

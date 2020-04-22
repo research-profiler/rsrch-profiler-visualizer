@@ -12,6 +12,8 @@ import { ResearcherPageComponent } from './researcher-page/researcher-page.compo
 import { SearchPageComponent } from './search-page/search-page.component';
 import { Researcher } from './models/researcher.model';
 import { Measure } from './models/measure.model';
+import { SearchPageService } from './search-page/search-page.service';
+import { ResearchSharedService } from './researcher.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,7 @@ import { Measure } from './models/measure.model';
     ChartsModule,
     ScrollToModule.forRoot(),
   ],
-  providers: [],
+  providers: [ResearchSharedService,SearchPageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
